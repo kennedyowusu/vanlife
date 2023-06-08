@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, Outlet, NavLink } from "react-router-dom"
 
 const HostVanDetail = () => {
   const { id } = useParams()
@@ -22,6 +22,12 @@ const HostVanDetail = () => {
 
   if (!van) return <h1>Loading...</h1>
 
+  const activeStyles = {
+    fontWeight: "bold",
+    textDecoration: "underline",
+    color: "#161616"
+  }
+
   return (
     <section>
       <Link
@@ -42,6 +48,17 @@ const HostVanDetail = () => {
                         <h4>${van.price}/day</h4>
                     </div>
                 </div>
+                  <nav className="host-van-detail-nav">
+                    <NavLink style={({ isActive}) => isActive ? activeStyles : null} to="." end>Details</NavLink>
+                    <NavLink
+                      style={({ isActive }) => isActive ? activeStyles : null}
+                      to="pricing">Pricing</NavLink>
+                    <NavLink
+                      style={({ isActive }) => isActive ? activeStyles : null}
+                      to="photos">Photos</NavLink>
+                  </nav>
+
+                <Outlet />
             </div>
         </section>
     )

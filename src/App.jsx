@@ -13,6 +13,9 @@ import HostLayout from './components/HostLayout';
 import Dashboard from './components/Host/Dashboard';
 import HostVans from './components/Host/HostVans';
 import HostVanDetail from './components/Host/HostVanDetail';
+import HostVanInfo from './components/Host/HostVanInfo';
+import HostVanPricing from './components/Host/HostVanPricing';
+import HostVanPhotos from './components/Host/HostVanPhotos';
 
 makeServer();
 
@@ -33,7 +36,11 @@ function App() {
               <Route path='income' element={<Income />} />
               <Route path='reviews' element={<Reviews />} />
               <Route path='vans' element={<HostVans />} />
-              <Route path='vans/:id' element={<HostVanDetail />} />
+              <Route path='vans/:id' element={<HostVanDetail />}>
+                <Route index element={<HostVanInfo />} />
+                <Route path='pricing' element={<HostVanPricing />} />
+                <Route path='photos' element={<HostVanPhotos />} />
+              </Route>
             </Route>
 
           </Route>
