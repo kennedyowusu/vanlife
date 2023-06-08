@@ -60,3 +60,22 @@ header a:hover {
 .link-button:hover {
     transform: translate(1px, 1px);
 }
+
+/* Host CSS */
+
+.host-nav {
+    display: flex;
+}
+
+.host-nav a {
+    text-decoration: none;
+    color: #4D4D4D;
+    font-weight: 500;
+    padding: 5px 20px;
+}
+
+.host-nav a:hover {
+    color: #161616;
+    text-decoration: underline;
+    font-weight: 600;
+}
