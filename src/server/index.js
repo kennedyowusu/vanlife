@@ -96,7 +96,7 @@ function makeServer() {
 
       this.get('/host/vans/:id', (schema, request) => {
         const id = request.params.id
-        return schema.vans.where({
+        return schema.vans.findBy({
           id,
           hostId: '123',
         })
