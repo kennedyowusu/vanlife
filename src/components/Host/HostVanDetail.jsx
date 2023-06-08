@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 const HostVanDetail = () => {
   const { id } = useParams()
@@ -23,7 +23,12 @@ const HostVanDetail = () => {
   if (!van) return <h1>Loading...</h1>
 
   return (
-        <section>
+    <section>
+      <Link
+        to=".."
+        relative="path"
+          className="back-button"
+      >&larr; <span>Back to all vans</span></Link>
             <div className="host-van-detail-layout-container">
                 <div className="host-van-detail">
                     <img src={van.imageUrl} />
