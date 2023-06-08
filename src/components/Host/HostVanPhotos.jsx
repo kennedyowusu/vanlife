@@ -1,10 +1,9 @@
-
+import { useOutletContext } from "react-router-dom"
 
 const HostVanPhotos = () => {
+ const { van } = useOutletContext()
   return (
-   <div>
-    <p>Van Photos</p>
-   </div>
+   <img src={van.imageUrl} className="host-van-detail-image" />
   )
 }
 

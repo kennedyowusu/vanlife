@@ -58,7 +58,7 @@ const HostVanDetail = () => {
                       to="photos">Photos</NavLink>
                   </nav>
 
-                <Outlet />
+                <Outlet context={{ van }}/>
             </div>
         </section>
     )
