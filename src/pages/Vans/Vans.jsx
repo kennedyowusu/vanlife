@@ -6,6 +6,7 @@ import { getVans } from '../../api'
 const Vans = () => {
   const [vans, setVans] = useState([])
   const [searchParams, setSearchParams] = useSearchParams([]);
+  const [loading, setLoading] = useState(false)
 
   const filterVans = searchParams.get('type');
 
@@ -13,8 +14,10 @@ const Vans = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       const vans = await getVans()
       setVans(vans)
+      setLoading(false)
     }
 
     fetchData()
@@ -46,6 +49,10 @@ const Vans = () => {
       }
       return prevParam
     });
+  }
+
+  if (loading) {
+    return <h1>Loading...</h1>
   }
 
   return (
