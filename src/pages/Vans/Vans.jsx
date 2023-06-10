@@ -24,7 +24,6 @@ const Vans = () => {
       } finally {
         setLoading(false);
       }
-      setLoading(false);
     }
 
     fetchData();
