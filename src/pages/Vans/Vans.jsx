@@ -7,6 +7,7 @@ const Vans = () => {
   const [vans, setVans] = useState([])
   const [searchParams, setSearchParams] = useSearchParams([]);
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const filterVans = searchParams.get('type');
 
@@ -14,14 +15,21 @@ const Vans = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true)
-      const vans = await getVans()
-      setVans(vans)
-      setLoading(false)
+      setLoading(true);
+      try {
+        const data = await getVans();
+        setVans(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+      setLoading(false);
     }
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
+
 
   const data = displayedVans.map((van) => (
     <div key={van.id} className='van-tile'>
@@ -53,6 +61,10 @@ const Vans = () => {
 
   if (loading) {
     return <h1>Loading...</h1>
+  }
+
+  if (error) {
+    return <h1>Something went wrong! { error.message}</h1>
   }
 
   return (

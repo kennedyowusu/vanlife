@@ -81,7 +81,8 @@ function makeServer() {
       this.timing = 2000
 
       this.get('/vans', (schema, request) => {
-        return schema.vans.all()
+        // return schema.vans.all()
+        return new Response(400, {}, {error: "Error fetching data"})
       })
 
       this.get('/vans/:id', (schema, request) => {
