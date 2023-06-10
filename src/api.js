@@ -1,14 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
 export async function getVans() {
   try {
-    const res = await axios.get("/api/vans");
-
-    if (res.statusCode !== 200 ) {
-      throw new Error("Error retrieving vans");
+    const response = await axios.get("/api/vans");
+    if (response.status !== 200) {
+      throw {
+        message: "Failed to fetch vans",
+        statusText: response.statusText,
+        status: response.status,
+      };
     }
-
-    const data = res.data;
+    const data = response.data;
     return data.vans;
   } catch (error) {
     console.error("Error retrieving vans:", error);
