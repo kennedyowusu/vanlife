@@ -1,28 +1,20 @@
 import './Vans.css'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Link, useSearchParams } from 'react-router-dom'
+import { getVans } from '../../api'
 
 const Vans = () => {
   const [vans, setVans] = useState([])
   const [searchParams, setSearchParams] = useSearchParams([]);
-  console.log(searchParams.get('type'));
 
   const filterVans = searchParams.get('type');
 
-  console.log(filterVans);
-
   const displayedVans = filterVans ? vans.filter(van => van.type === filterVans) : vans;
-
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/vans')
-        setVans(response.data.vans)
-      } catch (error) {
-        console.log(error)
-      }
+      const vans = await getVans()
+      setVans(vans)
     }
 
     fetchData()
