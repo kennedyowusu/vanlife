@@ -1,11 +1,12 @@
 import './Vans.css'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const VanDetail = () => {
   const { id } = useParams()
   const [van, setVan] = useState(null)
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +21,12 @@ const VanDetail = () => {
     fetchData()
   }, [id])
 
+  const search = location.state?.search || '';
+
   return (
     <div className='van-detail-container'>
       <Link
-        to=".."
+        to={`..${search}`}
         relative="path"
           className="back-button"
       >&larr; <span>Back to all vans</span></Link>
